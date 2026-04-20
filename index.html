@@ -20,11 +20,17 @@
 
 <script>
 (async function(){
-
   const SUPABASE_URL = 'https://mbqpsovlwvedwrtbbauj.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1icXBzb3Zsd3ZlZHdydGJiYXVqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU4MTI2NTksImV4cCI6MjA5MTM4ODY1OX0.B3VWnRUn-A9hABLrx5ysFDQeAJvP_rTktzGiuz5LeTY';
-
   const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const q = new URLSearchParams(location.search);
+
+  if (q.get('forceLogout') === '1') {
+    await supabase.auth.signOut();
+    location.href = '/';
+    return;
+  }
 
   function goPortalHome() {
     const inEmbed = window.self !== window.top;
@@ -36,20 +42,16 @@
   }
 
   const { data } = await supabase.auth.getSession();
-
   if (!data.session) {
     goPortalHome();
     return;
   }
 
   supabase.auth.onAuthStateChange(function (event, session) {
-    if (!session) {
-      goPortalHome();
-    }
+    if (!session) goPortalHome();
   });
-
 })();
-</script> 
+</script>
     
 </head>
 <body>
