@@ -436,3 +436,22 @@ html.embed-mode .card{
 html.embed-mode body{
     padding:0 !important;
   }
+  /* 상단 헤더 카드 키우기 */
+.reagent-header-card{
+  padding:26px 24px !important;
+  min-height:110px;
+  align-items:center !important;
+}
+
+.reagent-header-card h2{
+  font-size:28px !important;
+  line-height:1.2 !important;
+  font-weight:800 !important;
+  margin:0 !important;
+}
+
+/* iframe 안에서는 조금 더 정리 */
+html.embed-mode .reagent-header-card{
+  padding:28px 24px !important;
+  min-height:112px;
+}
