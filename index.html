@@ -5,6 +5,9 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>시약·초자 신청/취합</title>
 <link rel="stylesheet" href="style.css"/>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>       
+    
 <script>
     (function(){
       var embed = false;
@@ -14,7 +17,25 @@
       if (embed) document.documentElement.classList.add('embed-mode');
     })();
     </script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>   
+
+<script>
+(async function(){
+
+  const SUPABASE_URL = 'https://mbqpsovlwvedwrtbbauj.supabase.co';
+  const SUPABASE_ANON_KEY = '여기에_anon_key';
+
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const { data } = await supabase.auth.getSession();
+
+  if (!data.session) {
+    window.top.location.href = '/';
+    return;
+  }
+
+})();
+</script>  
+    
 </head>
 <body>
 <input id="productKeyword" type="hidden"/>
