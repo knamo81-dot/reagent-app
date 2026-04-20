@@ -29,12 +29,7 @@
   const { data } = await supabase.auth.getSession();
 
   if (!data.session) {
-    const inEmbed = window.self !== window.top;
-    if (inEmbed) {
-      window.top.location.href = '/';
-    } else {
-      window.location.href = '/';
-    }
+    window.top.location.href = '/';
     return;
   }
 
