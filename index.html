@@ -26,15 +26,30 @@
 
   const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+  function goPortalHome() {
+    const inEmbed = window.self !== window.top;
+    if (inEmbed) {
+      window.top.location.href = '/';
+    } else {
+      window.location.href = '/';
+    }
+  }
+
   const { data } = await supabase.auth.getSession();
 
   if (!data.session) {
-    window.top.location.href = '/';
+    goPortalHome();
     return;
   }
 
+  supabase.auth.onAuthStateChange(function (event, session) {
+    if (!session) {
+      goPortalHome();
+    }
+  });
+
 })();
-</script>  
+</script> 
     
 </head>
 <body>
