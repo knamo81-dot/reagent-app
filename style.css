@@ -484,3 +484,25 @@ html.embed-mode .reagent-header-card{
   padding:32px 28px !important;
   min-height:140px;
 }
+/* 탭 버튼 - 파란색 스타일 */
+.tab-btn{
+  background:#e2e8f0;
+  color:#334155;
+  border:none;
+  border-radius:12px;
+  padding:10px 18px;
+  font-weight:600;
+  transition:all .2s;
+}
+
+/* 선택된 버튼 (파란색) */
+.tab-btn.active{
+  background:#2563eb !important;
+  color:#fff !important;
+  box-shadow:0 4px 12px rgba(37,99,235,0.25);
+}
+
+/* hover 효과 */
+.tab-btn:hover{
+  background:#cbd5f5;
+}
